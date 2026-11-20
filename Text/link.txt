@@ -1,0 +1,29 @@
+
+Laravel 10 CRUD API Tutorial 2026 | REST API in Laravel
+
+composer create-project laravel/Laravel ProductCRUDApi
+cd ProductCRUDApi
+php artisan install:api
+php artisan make:model Product -m
+php artisan make:controller ProductController --api
+route lari elave eledik , model cedvelin qurduq , controller de yolu verdik
+
+breeze paket ucun
+composer require laravel/breeze --dev
+php artisan breeze:install api
+php artisan make:controller AuthController
+
+php artisan route:list --path=api routelar baxa bilersen 
+php artisan route:list --path=api -v middleware baxa bilersen
+// one to many relation
+php artisan make:model Category -m
+php artisan make:migration add_category_id_to_products_table --table=products
+php artisan migrate
+
+php artisan make:controller CategoryController
+
+php artisan make:migration add_role_to_users_table --table=users
+php artisan migrate
+
+AdminMiddleware.php middle ware yazirsan
+app.php bootstrap da 'admin' => \App\Http\Middleware\AdminMiddleware::class, qeydiyatdan kecirdirsen alias icinde 
