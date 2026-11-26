@@ -82,8 +82,17 @@ class CategoryController extends Controller
     }
 
 
-    public function products(Category $category)
+    public function products($id)
     {
+        $category = Category::with('products')->find($id);
+
+        if (!$category) {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Category not found',
+            ], 404);
+        }
+
         return response()->json([
             'category' => $category->name,
             'products' => $category->products,
