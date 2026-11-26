@@ -27,3 +27,52 @@ php artisan migrate
 
 AdminMiddleware.php middle ware yazirsan
 app.php bootstrap da 'admin' => \App\Http\Middleware\AdminMiddleware::class, qeydiyatdan kecirdirsen alias icinde 
+
+many to many
+ php artisan make:model Tag -m
+php artisan make:migration create_product_tag_table
+
+php artisan make:controller TagController
+
+php artisan make:model Order -m 
+php artisan make:model OrderItem -m " Bir sifarişdə bir neçə məhsul var. Bunu bir orders cədvəlində saxlamaq istəsəniz, product_id sütununa bir neçə id yazmalı olardınız (7, 8), bu isə mümkün deyil. Hər məhsulun öz sayı və qiyməti də var, bunları bir sütunda saxlamaq olmaz."
+
+php artisan migrate
+
+php artisan make:controller OrderController
+
+php artisan make:migration add_image_to_products_table --table=products 
+
+php artisan migrate
+php artisan storage:link - sekillerin brauzerde acilmasi ucun 
+
+php artisan make:model Review -m
+php artisan migrate
+php artisan make:controller ReviewController
+
+php artisan make:controller StatsController
+
+
+php artisan make:migration create_favorites_table
+php artisan migrate
+php artisan make:controller FavoriteController
+
+GET /products filtrləri (hamısı istəyə bağlıdır, birlikdə işləyir):
+
+search	     -  ?search=iPhone   -	Ad və ya təsvirdə axtarış
+category_id  -	?category_id=1   -	Kateqoriyaya görə
+tag_id       -	?tag_id=2        -   	Taga görə
+min_price    -	?min_price=1000  -	Minimum qiymət
+max_price    -	?max_price=3000  -	Maksimum qiymət
+sort         - 	?sort=price	 -      price, name, created_at (default created_at)
+direction    -	?direction=asc	 -      asc və ya desc (default desc)
+per_page     -	?per_page=5	 -      Səhifədə say, 1-50 (default 10)
+page          -	?page=2          -	Səhifə nömrəsi
+
+
+php artisan serve --host=0.0.0.0 --port=8000
+
+
+
+
+
